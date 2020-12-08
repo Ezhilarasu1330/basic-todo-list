@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 
+// HELPER
+import { getTodoItemsFromLocalStorage, saveTodoItemsToLocalStorage } from './helper';
+
 class App extends Component {
 
   state = {
     todoList: []
+  }
+
+  // React Life Cycle
+  componentDidMount() {
+    if (localStorage.getItem('todoList')) {
+      this.setState({
+        todoList: getTodoItemsFromLocalStorage('todoList')
+      })
+    }
   }
 
   addTodoItem = (event) => {
@@ -14,7 +26,12 @@ class App extends Component {
     if (todoValue.length > 0) {
       this.setState({
         todoList: [...this.state.todoList, todoValue]
+      }, () => {
+
+        // Save to localStorage
+        saveTodoItemsToLocalStorage('todoList', this.state.todoList);
       })
+
       event.target.reset();
     }
     event.preventDefault();
