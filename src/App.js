@@ -44,7 +44,11 @@ class App extends Component {
   deleteTodoItem = (event, index) => {
     var taskArray = [...this.state.todoList];
     taskArray.splice(index, 1);
-    this.setState({ todoList: taskArray });
+    this.setState({ todoList: taskArray }, () => {
+
+      // Save to localStorage
+      saveTodoItemsToLocalStorage('todoList', this.state.todoList);
+    });
   }
 
   render() {
