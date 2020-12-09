@@ -1,3 +1,3 @@
 # Simple React Todo App
 
-## <a href="https://salty-hamlet-49532.herokuapp.com/">LIVE DEMO</a>
+## <a href="https://react-todo-1330.herokuapp.com/">LIVE DEMO</a>
